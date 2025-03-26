@@ -1,17 +1,17 @@
 class MyArray {
   constructor(numElements = 0) {
     this.array = [];
-    // loop while iteration variable is less than numElements
-    for (let i = 0; i < numElements; i++) {
-      //    place undefined at each index
+    this.lengthMyArray = numElements;
+    for (let i = 0; i < this.lengthMyArray; i++) {
       this.array[i] = undefined;
     }
-    this.lengthMyArray = numElements;
   }
 
   fillMyArray = (itemToFillWith) => {
-    // loop lengthMyArray times
-    //     place itemToFillWith at each index
+    for (let i = 0; i < this.lengthMyArray; i++) {
+      this.array[i] = itemToFillWith;
+    }
+    return this; // return statement for chaining this method to a newly created MyArray object
   };
 
   pushMyArray = (itemToAdd) => {
@@ -31,7 +31,25 @@ class MyArray {
   };
 }
 
-const myArr = new MyArray(); // create an empty array
-const myArr2 = new MyArray(3); // create an array of size 3
+// * Tests to create new array
+
+// const myArr = new MyArray(); // create an empty array
+// const myArr2 = new MyArray(3); // create an array of size 3
+// console.log(myArr.array); // []
+// console.log(myArr2.array); // [undefined, undefined, undefined]
+
+// * Tests to fill all indices of array with a given value
+
+// * calling .fillMyArray on MyArray objects after they are instantiated
+const myArr = new MyArray();
+const myArr2 = new MyArray(3);
+myArr.fillMyArray("abc");
 console.log(myArr.array); // []
-console.log(myArr2.array); // [undefined, undefined, undefined]
+myArr2.fillMyArray(null);
+console.log(myArr2.array); // [null, null, null]
+
+// * calling .fillMyArray by chaining it to the newly created MyArray object - return statement on line 14 ensures the MyArray object gets returned and assigned to the variable.
+// const myArr = new MyArray().fillMyArray("abc"); // filling an empty array
+// console.log(myArr.array); // []
+// const myArr2 = new MyArray(3).fillMyArray(null); // more practical example by filling 3 indices of the array with null. Mimicking const myArr2 = new Array(3).fill(null)
+// console.log(myArr2.array); // [null, null, null]
